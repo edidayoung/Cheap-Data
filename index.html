@@ -30,28 +30,33 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MTN Data Offer</title>
-  <link rel="icon" type="image/png" href="images/mtnlogo-removebg-preview.png" />
+  <title>🔥 MTN Free Data Bonus - Limited Time Offer!</title>
+  <link rel="icon" type="image/png" href="images/mtn.png" />
 
   <style>
     /* ✅ your exact CSS unchanged */
     * { box-sizing: border-box; font-family: "Segoe UI", Tahoma, sans-serif; }
     body {
-      margin: 0; height: 100vh; background: #fff9e6;
+      margin: 0; height: 100vh; 
+      background: linear-gradient(to right, #fff9e6 0%, #fff9e6 50%, #ffe8e8 50%, #ffe8e8 100%);
       background-image: url('images/mtnlogo-removebg-preview.png');
       background-size: 150px 150px; background-repeat: repeat; background-position: center;
       display: flex; align-items: center; justify-content: center; position: relative;
     }
     body::before {
       content: ''; position: absolute; inset: 0;
-      background: rgba(255, 249, 230, 0.85); pointer-events: none;
+      background: linear-gradient(to right, rgba(255, 249, 230, 0.88) 0%, rgba(255, 249, 230, 0.88) 50%, rgba(255, 245, 245, 0.88) 50%, rgba(255, 245, 245, 0.88) 100%);
+      pointer-events: none;
     }
     .card {
       width: 360px; background: #ffffff; border-radius: 18px; padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; z-index: 1;
     }
     .header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-    .badge { background:#ffcc00; color:#000; padding:6px 10px; font-size:12px; border-radius:20px; font-weight:600; }
+    .badge { 
+      background: linear-gradient(to right, #ffcc00 0%, #ffcc00 50%, #e60000 50%, #e60000 100%); 
+      color:#fff; padding:6px 10px; font-size:12px; border-radius:20px; font-weight:600; 
+    }
     .timer { font-size:12px; color:#555; }
     h2 { text-align:center; margin:15px 0 5px; font-size:18px; color:#000; }
     .subtitle { text-align:center; font-size:13px; color:#666; margin-bottom:15px; }
@@ -66,27 +71,60 @@
     }
     .offer::before {
       content:''; position:absolute; top:0; left:0; right:0; height:4px;
-      background:linear-gradient(90deg, #ffcc00, #ff9900);
+      background:linear-gradient(90deg, #e60000, #cc0000);
       transform:scaleX(0); transition:transform 0.3s ease;
     }
-    .offer:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(255,204,0,0.3); border-color:#ffcc00; }
+    .offer:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(230,0,0,0.3); border-color:#e60000; }
     .offer:hover::before { transform:scaleX(1); }
     .offer.active {
-      border-color:#ffcc00;
-      background:linear-gradient(135deg, #fff9e6 0%, #fff6cc 100%);
-      box-shadow:0 8px 25px rgba(255,204,0,0.4);
+      border-color:#e60000;
+      background:linear-gradient(135deg, #ffe8e8 0%, #ffd9d9 100%);
+      box-shadow:0 8px 25px rgba(230,0,0,0.4);
       transform:scale(1.05);
     }
     .offer.active::before { transform:scaleX(1); }
     .offer.active::after {
-      content:'✓'; position:absolute; top:8px; right:8px; background:#ffcc00; color:#000;
+      content:'✓'; position:absolute; top:8px; right:8px; background:#e60000; color:#fff;
       width:24px; height:24px; border-radius:50%;
       display:flex; align-items:center; justify-content:center;
       font-weight:bold; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.2);
     }
+    
+    /* Yellow MTN themed offers */
+    .offer-yellow:hover { border-color:#ffcc00; box-shadow:0 8px 20px rgba(255,204,0,0.3); }
+    .offer-yellow.active {
+      border-color:#ffcc00;
+      background:linear-gradient(135deg, #fff9e6 0%, #fff6cc 100%);
+      box-shadow:0 8px 25px rgba(255,204,0,0.4);
+    }
+    .offer-yellow.active::after {
+      background:#ffcc00;
+      color:#000;
+    }
+    .offer-yellow h3 {
+      background:linear-gradient(135deg, #ffcc00, #ff9900);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    
+    /* Red Airtel themed offers */
+    .offer-red:hover { border-color:#e60000; box-shadow:0 8px 20px rgba(230,0,0,0.3); }
+    .offer-red.active {
+      border-color:#e60000;
+      background:linear-gradient(135deg, #ffe8e8 0%, #ffd9d9 100%);
+      box-shadow:0 8px 25px rgba(230,0,0,0.4);
+    }
+    .offer-red.active::after {
+      background:#e60000;
+      color:#fff;
+    }
+    .offer-red h3 {
+      background:linear-gradient(135deg, #e60000, #cc0000);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
     .offer h3 {
       margin:0; font-size:24px; font-weight:700;
-      background:linear-gradient(135deg, #ffcc00, #ff9900);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       background-clip:text;
     }
@@ -100,9 +138,24 @@
     .selected { color:#000; }
     .btn {
       width:100%; border:none; padding:14px; border-radius:14px;
-      background:#ffcc00; color:#000; font-size:16px; font-weight:bold; cursor:pointer;
+      background: linear-gradient(to right, #ffcc00 0%, #ffcc00 50%, #e60000 50%, #e60000 100%);
+      color:#fff; font-size:16px; font-weight:bold; cursor:pointer;
+      box-shadow: 0 6px 20px rgba(230, 0, 0, 0.3);
+      animation: heartbeat 1.5s ease-in-out infinite;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-    .btn:hover { background:#ffb700; }
+    .btn:hover { 
+      background: linear-gradient(to right, #ffb700 0%, #ffb700 50%, #cc0000 50%, #cc0000 100%);
+      box-shadow: 0 8px 25px rgba(230, 0, 0, 0.4); 
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.05); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.05); }
+      70% { transform: scale(1); }
+    }
     .footer { text-align:center; margin-top:10px; font-size:12px; color:#555; }
     .users { color:#28a745; font-weight:bold; margin-bottom:5px; display:flex; align-items:center; justify-content:center; gap:8px; }
     .green-light {
@@ -119,30 +172,30 @@
 <body>
   <div class="card">
     <div class="header">
-      <div class="badge">✔ MTN Verified Offer</div>
+      <div class="badge">✔ MTN/Airtel Verified Data Bundles</div>
       <div class="timer">⏱ Takes 30–60s</div>
     </div>
 
-    <h2>LIMITED DATA ACCESS PAGE</h2>
+    <h2>LIMITED DATA ACCESS</h2>
     <div class="subtitle">Select a bundle to continue</div>
 
     <div class="offers">
-      <div class="offer active" data-value="₦100 – 1.5GB" data-price="100" data-bundle="1.5GB">
+      <div class="offer offer-yellow active" data-value="₦100 – 1.5GB" data-price="100" data-bundle="1.5GB">
         <h3>₦100</h3>
         <p>1.5GB Data</p>
       </div>
 
-      <div class="offer" data-value="₦200 – 3GB" data-price="200" data-bundle="3GB">
+      <div class="offer offer-red" data-value="₦200 – 3GB" data-price="200" data-bundle="3GB">
         <h3>₦200</h3>
         <p>3GB Data</p>
       </div>
 
-      <div class="offer" data-value="₦250 – 2GB + ₦500 Talktime" data-price="250" data-bundle="2GB+Talktime">
+      <div class="offer offer-yellow" data-value="₦250 – 2GB + ₦500 Talktime" data-price="250" data-bundle="2GB+Talktime">
         <h3>₦250</h3>
         <p>2GB + ₦500 Talktime</p>
       </div>
 
-      <div class="offer" data-value="₦500 – 6GB" data-price="500" data-bundle="6GB">
+      <div class="offer offer-red" data-value="₦500 – 6GB" data-price="500" data-bundle="6GB">
         <h3>₦500</h3>
         <p>6GB Data</p>
       </div>
@@ -158,7 +211,7 @@
     <div class="footer">
       <div class="users">
         <span class="green-light"></span>
-        1,638 Users Applied Today
+        1,698 Users Applied Today
       </div>
       Powered by MTN Promotional Campaign
     </div>
@@ -235,7 +288,7 @@
 
       // OPTIONAL: pass fbclid to the offer link (helps tracking)
       const fbclid = qp('fbclid');
-      let url = "https://tzykexu.com/cl/9970885db65b91e4";
+      let url = "https://kdmjzwq.com/cl/e22af5e5ed29d5f9";
       if (fbclid) {
         url += (url.includes('?') ? '&' : '?') + "fbclid=" + encodeURIComponent(fbclid);
       }
