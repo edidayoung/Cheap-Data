@@ -1,32 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '2621505014912331');
-
-    // ✅ Simple event id generator
-    function eid(prefix){
-      return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-    }
-
-    // ✅ Standard PageView with eventID
-    fbq('track', 'PageView', {}, { eventID: eid('pv') });
-  </script>
-
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2621505014912331&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -34,28 +8,20 @@
   <link rel="icon" type="image/png" href="images/mtn.png" />
 
   <style>
-    /* ✅ your exact CSS unchanged */
     * { box-sizing: border-box; font-family: "Segoe UI", Tahoma, sans-serif; }
     body {
       margin: 0; height: 100vh; 
-      background: linear-gradient(to right, #fff9e6 0%, #fff9e6 50%, #ffe8e8 50%, #ffe8e8 100%);
-      background-image: url('images/mtnlogo-removebg-preview.png');
-      background-size: 150px 150px; background-repeat: repeat; background-position: center;
-      display: flex; align-items: center; justify-content: center; position: relative;
-    }
-    body::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(255, 249, 230, 0.88) 0%, rgba(255, 249, 230, 0.88) 50%, rgba(255, 245, 245, 0.88) 50%, rgba(255, 245, 245, 0.88) 100%);
-      pointer-events: none;
+      background: #f5f5f5;
+      display: flex; align-items: center; justify-content: center;
     }
     .card {
-      width: 360px; background: #ffffff; border-radius: 18px; padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; z-index: 1;
+      width: 360px; background: #ffffff; border-radius: 8px; padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
     .badge { 
-      background: linear-gradient(to right, #ffcc00 0%, #ffcc00 50%, #e60000 50%, #e60000 100%); 
-      color:#fff; padding:6px 10px; font-size:12px; border-radius:20px; font-weight:600; 
+      background: #333; 
+      color:#fff; padding:6px 10px; font-size:12px; border-radius:4px; font-weight:600; 
     }
     .timer { font-size:12px; color:#555; }
     h2 { text-align:center; margin:15px 0 5px; font-size:18px; color:#000; }
@@ -63,109 +29,35 @@
     .offers { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:15px; }
 
     .offer {
-      border:2px solid #e0e0e0; border-radius:16px; padding:18px 12px; cursor:pointer;
-      transition:all 0.3s ease;
-      background:linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
-      position:relative; overflow:hidden;
-      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      border:2px solid #ddd; border-radius:8px; padding:18px 12px; cursor:pointer;
+      background:#fff;
     }
-    .offer::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:4px;
-      background:linear-gradient(90deg, #e60000, #cc0000);
-      transform:scaleX(0); transition:transform 0.3s ease;
-    }
-    .offer:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(230,0,0,0.3); border-color:#e60000; }
-    .offer:hover::before { transform:scaleX(1); }
     .offer.active {
-      border-color:#e60000;
-      background:linear-gradient(135deg, #ffe8e8 0%, #ffd9d9 100%);
-      box-shadow:0 8px 25px rgba(230,0,0,0.4);
-      transform:scale(1.05);
-    }
-    .offer.active::before { transform:scaleX(1); }
-    .offer.active::after {
-      content:'✓'; position:absolute; top:8px; right:8px; background:#e60000; color:#fff;
-      width:24px; height:24px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:bold; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* Yellow MTN themed offers */
-    .offer-yellow:hover { border-color:#ffcc00; box-shadow:0 8px 20px rgba(255,204,0,0.3); }
-    .offer-yellow.active {
-      border-color:#ffcc00;
-      background:linear-gradient(135deg, #fff9e6 0%, #fff6cc 100%);
-      box-shadow:0 8px 25px rgba(255,204,0,0.4);
-    }
-    .offer-yellow.active::after {
-      background:#ffcc00;
-      color:#000;
-    }
-    .offer-yellow h3 {
-      background:linear-gradient(135deg, #ffcc00, #ff9900);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    
-    /* Red Airtel themed offers */
-    .offer-red:hover { border-color:#e60000; box-shadow:0 8px 20px rgba(230,0,0,0.3); }
-    .offer-red.active {
-      border-color:#e60000;
-      background:linear-gradient(135deg, #ffe8e8 0%, #ffd9d9 100%);
-      box-shadow:0 8px 25px rgba(230,0,0,0.4);
-    }
-    .offer-red.active::after {
-      background:#e60000;
-      color:#fff;
-    }
-    .offer-red h3 {
-      background:linear-gradient(135deg, #e60000, #cc0000);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text;
+      border-color:#333;
+      background:#f0f0f0;
     }
     .offer h3 {
-      margin:0; font-size:24px; font-weight:700;
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text;
+      margin:0; font-size:24px; font-weight:700; color:#000;
     }
     .offer p { margin:8px 0 0; font-size:13px; color:#333; font-weight:500; }
 
     .continue {
       display:flex; justify-content:space-between; align-items:center;
-      background:#fff6cc; border-radius:12px; padding:10px; margin-bottom:12px;
+      background:#f0f0f0; border-radius:8px; padding:10px; margin-bottom:12px;
       font-size:13px; font-weight:600;
     }
     .selected { color:#000; }
     .btn {
-      width:100%; border:none; padding:14px; border-radius:14px;
-      background: linear-gradient(to right, #ffcc00 0%, #ffcc00 50%, #e60000 50%, #e60000 100%);
+      width:100%; border:none; padding:14px; border-radius:8px;
+      background: #333;
       color:#fff; font-size:16px; font-weight:bold; cursor:pointer;
-      box-shadow: 0 6px 20px rgba(230, 0, 0, 0.3);
-      animation: heartbeat 1.5s ease-in-out infinite;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     .btn:hover { 
-      background: linear-gradient(to right, #ffb700 0%, #ffb700 50%, #cc0000 50%, #cc0000 100%);
-      box-shadow: 0 8px 25px rgba(230, 0, 0, 0.4); 
+      background: #555;
     }
     
-    @keyframes heartbeat {
-      0% { transform: scale(1); }
-      14% { transform: scale(1.05); }
-      28% { transform: scale(1); }
-      42% { transform: scale(1.05); }
-      70% { transform: scale(1); }
-    }
     .footer { text-align:center; margin-top:10px; font-size:12px; color:#555; }
-    .users { color:#28a745; font-weight:bold; margin-bottom:5px; display:flex; align-items:center; justify-content:center; gap:8px; }
-    .green-light {
-      width:10px; height:10px; background:#28a745; border-radius:50%;
-      animation:blink 1.5s infinite; box-shadow:0 0 5px #28a745;
-    }
-    @keyframes blink {
-      0%,100% { opacity:1; box-shadow:0 0 10px #28a745; }
-      50% { opacity:0.3; box-shadow:0 0 3px #28a745; }
-    }
+    .users { color:#333; font-weight:bold; margin-bottom:5px; }
   </style>
 </head>
 
@@ -180,22 +72,22 @@
     <div class="subtitle">Select a bundle to continue</div>
 
     <div class="offers">
-      <div class="offer offer-yellow active" data-value="₦100 – 1.5GB" data-price="100" data-bundle="1.5GB">
+      <div class="offer active" data-value="₦100 – 1.5GB" data-price="100" data-bundle="1.5GB">
         <h3>₦100</h3>
         <p>1.5GB Data</p>
       </div>
 
-      <div class="offer offer-red" data-value="₦200 – 3GB" data-price="200" data-bundle="3GB">
+      <div class="offer" data-value="₦200 – 3GB" data-price="200" data-bundle="3GB">
         <h3>₦200</h3>
         <p>3GB Data</p>
       </div>
 
-      <div class="offer offer-yellow" data-value="₦250 – 2GB + ₦500 Talktime" data-price="250" data-bundle="2GB+Talktime">
+      <div class="offer" data-value="₦250 – 2GB + ₦500 Talktime" data-price="250" data-bundle="2GB+Talktime">
         <h3>₦250</h3>
         <p>2GB + ₦500 Talktime</p>
       </div>
 
-      <div class="offer offer-red" data-value="₦500 – 6GB" data-price="500" data-bundle="6GB">
+      <div class="offer" data-value="₦500 – 6GB" data-price="500" data-bundle="6GB">
         <h3>₦500</h3>
         <p>6GB Data</p>
       </div>
@@ -210,7 +102,6 @@
 
     <div class="footer">
       <div class="users">
-        <span class="green-light"></span>
         1,698 Users Applied Today
       </div>
       Powered by MTN Promotional Campaign
@@ -218,83 +109,25 @@
   </div>
 
   <script>
-    // ✅ helper: get query param (for optional fbclid passing)
-    function qp(name){
-      const u = new URL(window.location.href);
-      return u.searchParams.get(name);
-    }
-
-    // ✅ event id generator (same as in head for consistency)
-    function eid(prefix){
-      return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-    }
-
     const offers = document.querySelectorAll(".offer");
     const selectedText = document.getElementById("selectedOffer");
     const applyBtn = document.getElementById("applyBtn");
 
-    // ✅ initial selected offer
     let selected = document.querySelector(".offer.active");
     let selectedValue = selected?.dataset.value || "₦100 – 1.5GB";
-    let selectedPrice = Number(selected?.dataset.price || 100);
-    let selectedBundle = selected?.dataset.bundle || "1.5GB";
 
-    // ✅ fire ViewContent once on load (what the user is viewing)
-    fbq('track', 'ViewContent', {
-      content_name: 'MTN Data Offer',
-      content_category: 'Data Bundle',
-      currency: 'NGN',
-      value: selectedPrice,
-      contents: [{ id: selectedBundle, quantity: 1 }]
-    }, { eventID: eid('vc') });
-
-    // ✅ when user selects an offer -> AddToCart (strong intent signal)
     offers.forEach(offer => {
       offer.addEventListener("click", () => {
         offers.forEach(o => o.classList.remove("active"));
         offer.classList.add("active");
 
         selectedValue = offer.dataset.value;
-        selectedPrice = Number(offer.dataset.price || 0);
-        selectedBundle = offer.dataset.bundle || 'unknown';
-
         selectedText.textContent = selectedValue;
-
-        fbq('track', 'AddToCart', {
-          content_name: 'Selected Bundle',
-          currency: 'NGN',
-          value: selectedPrice,
-          contents: [{ id: selectedBundle, quantity: 1 }]
-        }, { eventID: eid('atc') });
       });
     });
 
-    // ✅ Apply click -> strongest pre-conversion signals (before redirect)
     applyBtn.addEventListener("click", () => {
-      // 1) InitiateCheckout (high intent)
-      fbq('track', 'InitiateCheckout', {
-        content_name: 'Apply Now Click',
-        currency: 'NGN',
-        value: selectedPrice,
-        contents: [{ id: selectedBundle, quantity: 1 }]
-      }, { eventID: eid('ic') });
-
-      // 2) OutboundClick (leaving your site)
-      fbq('trackCustom', 'OutboundClick', {
-        destination: 'tzykexu.com',
-        bundle: selectedBundle,
-        value: selectedPrice
-      }, { eventID: eid('ob') });
-
-      // OPTIONAL: pass fbclid to the offer link (helps tracking)
-      const fbclid = qp('fbclid');
-      let url = "https://kdmjzwq.com/cl/e22af5e5ed29d5f9";
-      if (fbclid) {
-        url += (url.includes('?') ? '&' : '?') + "fbclid=" + encodeURIComponent(fbclid);
-      }
-
-      // small delay so pixel has time to send
-      setTimeout(() => window.location.href = url, 250);
+      window.location.href = "https://hisswrpmcm.bid/cl/eed9b0ebc1e07795";
     });
   </script>
 </body>
